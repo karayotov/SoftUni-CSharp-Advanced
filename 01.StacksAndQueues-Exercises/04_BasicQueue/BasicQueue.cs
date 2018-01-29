@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _04_BasicQueue
 {
-    class Program
+    class BasicQueue
     {
         static void Main(string[] args)
         {

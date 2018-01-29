@@ -4,40 +4,56 @@ using System.Linq;
 
 class maximumElement
 {
+    static Stack<int> stack = new Stack<int>();
+    private static int max = 0;
     static void Main()
     {
-        var nsx = Console.ReadLine()
-            .Split(' ')
-            .Select(int.Parse)
-            .ToArray();
+        int n = int.Parse(Console.ReadLine());
 
-        var inputLine = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
-        var n = nsx[0];
-        var s = nsx[1];
-        var x = nsx[2];
-
-        var stack = new Queue<int>(inputLine);
-
-        for (int j = 0; j < s; j++)
+        for (int i = 0; i < n; i++)
         {
-            stack.Dequeue(); 
+            int[] args = Console.ReadLine()
+                .Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToArray();
 
+            ExecuteCommand(args);
         }
+    }
 
-        if (stack.Count == 0)
+    private static void ExecuteCommand(int[] args)
+    {
+        switch (args[0])
         {
-            Console.WriteLine(0);
-            return;
-        }
+            case 1:
 
-        if (stack.Contains(x))
-        {
-            Console.WriteLine("true");
+                stack.Push(args[1]);
+                if (args[1] > max)
 
-        }
-        else
-        {
-            Console.WriteLine(stack.Max());
+                {
+                    max = args[1];
+                }
+                break;
+
+            case 2:
+
+                int element = stack.Pop();
+
+                if (element == max && stack.Count > 0)
+                {
+                    max = stack.Max();
+                }
+                else if (element == max && stack.Count == 0)
+                {
+                    max = 0;
+                }
+                break;
+                default:
+                    break;
+                
+            case 3:
+                Console.WriteLine(max);
+                break;
         }
     }
 }

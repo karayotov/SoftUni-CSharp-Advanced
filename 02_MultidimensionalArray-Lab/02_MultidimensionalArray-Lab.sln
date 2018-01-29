@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_SumMatrixElement", "01_S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_SquareWithMaxSum", "02_SquareWithMaxSum\02_SquareWithMaxSum.csproj", "{3B787330-F349-4676-865D-CA6E2E2BF480}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_GroupNums", "03_GroupNums\03_GroupNums.csproj", "{27B57C09-5B54-486F-91D7-A6FB301B16E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_PascalTriangle", "04_PascalTriangle\04_PascalTriangle.csproj", "{D009FB28-7511-4230-B657-A0FA54A751F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{3B787330-F349-4676-865D-CA6E2E2BF480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B787330-F349-4676-865D-CA6E2E2BF480}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B787330-F349-4676-865D-CA6E2E2BF480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B57C09-5B54-486F-91D7-A6FB301B16E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B57C09-5B54-486F-91D7-A6FB301B16E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B57C09-5B54-486F-91D7-A6FB301B16E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B57C09-5B54-486F-91D7-A6FB301B16E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D009FB28-7511-4230-B657-A0FA54A751F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D009FB28-7511-4230-B657-A0FA54A751F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D009FB28-7511-4230-B657-A0FA54A751F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D009FB28-7511-4230-B657-A0FA54A751F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
