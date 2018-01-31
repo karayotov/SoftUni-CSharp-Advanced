@@ -8,7 +8,7 @@ namespace _01.MatrixOfPalindromes
     {
         static void Main(string[] args)
         {
-            int[] dimensions = Console.ReadLine().Split(new String[] {" "}, StringSplitOptions.RemoveEmptyEntries)
+            int[] dimensions = Console.ReadLine().Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse).ToArray();
             int rowsCount = dimensions[0];
             int colsCount = dimensions[1];
@@ -25,7 +25,7 @@ namespace _01.MatrixOfPalindromes
                 for (int colIndex = 0; colIndex < palindromesMtrx.GetLength(1); colIndex++)
                 {
 
-                    threeCharsWord = String.Join(secondChar, firstChar, lastChar);
+                    threeCharsWord = $"{firstChar}{secondChar}{lastChar}";
                     palindromesMtrx[rowIndex, colIndex] = threeCharsWord;
                     secondChar++;
 
