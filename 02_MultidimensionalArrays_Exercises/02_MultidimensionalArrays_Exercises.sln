@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_SquaresInMatrix", "03_Sq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_MaximalSum", "04_MaximalSum\04_MaximalSum.csproj", "{0687EF07-EE81-4C60-929F-A54C1B1900AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_RubiksMatrix", "05_RubiksMatrix\05_RubiksMatrix.csproj", "{4E062318-7FBA-427E-A712-92F438C1800D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06_TargetPractice", "06_TargetPractice\06_TargetPractice.csproj", "{BD44F6F7-7F03-491E-9B4A-484A7C13273F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{0687EF07-EE81-4C60-929F-A54C1B1900AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0687EF07-EE81-4C60-929F-A54C1B1900AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0687EF07-EE81-4C60-929F-A54C1B1900AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E062318-7FBA-427E-A712-92F438C1800D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E062318-7FBA-427E-A712-92F438C1800D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E062318-7FBA-427E-A712-92F438C1800D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E062318-7FBA-427E-A712-92F438C1800D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD44F6F7-7F03-491E-9B4A-484A7C13273F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD44F6F7-7F03-491E-9B4A-484A7C13273F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD44F6F7-7F03-491E-9B4A-484A7C13273F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD44F6F7-7F03-491E-9B4A-484A7C13273F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
