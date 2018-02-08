@@ -8,78 +8,114 @@ namespace _03_NumberWars
     {
         static void Main(string[] args)
         {
-            List<string> firstPLayerList =
-                Console.ReadLine()
-                .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
-                .ToList();
+            Queue<string> firstPlayerQueue = new Queue<string>(Console.ReadLine().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            Queue<string> secondPlayerQueue = new Queue<string>(Console.ReadLine().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries));
 
-            List<string> secondPLayerList = Console.ReadLine()
-                .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
-                .ToList();
-
-            List<string> noMansCards = new List<string>();
-
-            Queue<string> firstPlayerQueue = new Queue<string>(firstPLayerList);
-            Queue<string> secondPlayerQueue = new Queue<string>(secondPLayerList);
-
-            firstPLayerList.Clear();
-            secondPLayerList.Clear();
-
-            int firstPlayerHand = 0;
-            int secondPlayerHand = 0;
-            int firstHandNum;
-            char firstHandChar;
-            int secondHandNum;
-            char secondHandChar;
-
-            int leftSumCards = 0;
-            int rightSumCards = 0;
+            List<string> table = new List<string>();
 
             string firstSingleCard = String.Empty;
             string secondSingleCard = String.Empty;
 
-            while (true)
+            int firstNum, secondNum, turnCounter = 0;
+
+            while (firstPlayerQueue.Count > 0 && secondPlayerQueue.Count > 0 && turnCounter < 1_000_000)
             {
+                turnCounter++;
+
                 firstSingleCard = firstPlayerQueue.Dequeue();
                 secondSingleCard = secondPlayerQueue.Dequeue();
 
-                noMansCards.Add(firstSingleCard);
-                noMansCards.Add(secondSingleCard);
 
-                noMansCards.OrderByDescending(x => x);
+                firstNum = int.Parse(firstSingleCard.Remove(firstSingleCard.Length - 1));
+                secondNum = int.Parse(secondSingleCard.Remove(secondSingleCard.Length - 1));
 
-                if (firstSingleCard < secondSingleCard)
+                if (firstNum > secondNum)
                 {
-                    //todo
+                    firstPlayerQueue.Enqueue(firstSingleCard);
+                    firstPlayerQueue.Enqueue(secondSingleCard);
+
                 }
-                else if (firstHandNum > secondHandNum)
+                else if (firstNum < secondNum)
                 {
-                    //todo
+                    secondPlayerQueue.Enqueue(secondSingleCard);
+                    secondPlayerQueue.Enqueue(firstSingleCard);
                 }
-                else
+                while (firstNum == secondNum)
                 {
-                    if (firstHandChar < secondHandChar)
+
+                    table.Add(secondSingleCard);
+                    table.Add(firstSingleCard);
+
+                    firstNum = 0;
+                    secondNum = 0;
+
+                    for (int moreMoves = 0; moreMoves < 3; moreMoves++)
                     {
-                        //todo
-                    }
-                    else if (firstHandChar > secondHandChar)
-                    {
-                        //todo
-                    }
-                    else
-                    {
-                        for (int moreCards = 0; moreCards < 3; moreCards++)
+                        if (firstPlayerQueue.Count > 0 && secondPlayerQueue.Count > 0)
                         {
                             firstSingleCard = firstPlayerQueue.Dequeue();
+                            table.Add(firstSingleCard);
+
                             secondSingleCard = secondPlayerQueue.Dequeue();
-
-                            secondHandNum = int.Parse(firstSingleCard.Remove(secondSingleCard.Length - 1));
-                            firstHandNum = int.Parse(secondSingleCard.Remove(secondSingleCard.Length - 1));
-
-
+                            table.Add(secondSingleCard);
                         }
+                        else
+                        {
+                            if (firstPlayerQueue.Count < secondPlayerQueue.Count)
+                            {
+                                Console.WriteLine($"Second player wins after {turnCounter} turns");
+                            }
+                            else if (firstPlayerQueue.Count > secondPlayerQueue.Count)
+                            {
+                                Console.WriteLine($"First player wins after {turnCounter} turns");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Draw after {turnCounter} turns");
+                            }
+                            return;
+                        }
+
+
+                        firstNum += char.ToUpper(firstSingleCard[firstSingleCard.Length - 1]) - 64;
+                        secondNum += char.ToUpper(secondSingleCard[secondSingleCard.Length - 1]) - 64;
+
+                    }
+
+                    table = table.OrderByDescending(x => x).ToList();
+
+                    if (firstNum > secondNum)
+                    {
+                        for (int i = 0; i < table.Count; i++)
+                        {
+                            firstPlayerQueue.Enqueue(table[i]);
+                        }
+                        table = new List<string>();
+                        break;
+
+                    }
+                    else if (firstNum < secondNum)
+                    {
+                        for (int i = 0; i < table.Count; i++)
+                        {
+                            secondPlayerQueue.Enqueue(table[i]);
+                        }
+                        table = new List<string>();
+                        break;
                     }
                 }
+            }
+            if (firstPlayerQueue.Count < secondPlayerQueue.Count)
+            {
+                Console.WriteLine($"Second player wins after {turnCounter} turns");
+            }
+            else if (firstPlayerQueue.Count > secondPlayerQueue.Count)
+            {
+                Console.WriteLine($"First player wins after {turnCounter} turns");
+            }
+            else
+            {
+                Console.WriteLine($"Draw after {turnCounter} turns");
             }
         }
     }

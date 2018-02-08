@@ -10,7 +10,6 @@ namespace _01_Regeh
             string pattern = @"\[[a-zA-Z]+\<(?<leftNum>[\d]+)REGEH(?<rightNum>[\d]+)\>[a-zA-Z]+\]";
             string input = Console.ReadLine();
             int firstIndex = 0;
-            int nextIndex = 0;
 
             Regex regex = new Regex(pattern);
             MatchCollection matches = regex.Matches(input);
