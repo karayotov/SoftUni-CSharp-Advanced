@@ -46,94 +46,47 @@ class TargetPractice
         }
 
         int[] shotParams = Console.ReadLine()
-            .Split(new string[] {" "}, StringSplitOptions.RemoveEmptyEntries)
+            .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse)
             .ToArray();
+
         int rowOfImpact = shotParams[0];
         int colOfImpact = shotParams[1];
         int radiusOfImpact = shotParams[2];
 
-        int leftWave = colOfImpact - radiusOfImpact;
-        int rightWave = colOfImpact + radiusOfImpact;
+
 
         staircaseMatrix[rowOfImpact, colOfImpact] = ' ';
 
-        int downRowsBlastRange = rowOfImpact + radiusOfImpact;
-        int upRowsBlastRange = rowOfImpact - radiusOfImpact;
-        int originalLeftWave = leftWave;
-        int originalRightWave = rightWave;
-
-        for (int shockwaveRowStartIndex = rowOfImpact; shockwaveRowStartIndex <= downRowsBlastRange; shockwaveRowStartIndex++)
+        for (int row = 0; row < staircaseMatrix.GetLength(0); row++)
         {
-            for (int shockwaveColLeftStartIndex = leftWave;
-                shockwaveColLeftStartIndex <= rightWave;
-                shockwaveColLeftStartIndex++)
+            for (int col = 0; col < staircaseMatrix.GetLength(1); col++)
             {
-                if (shockwaveRowStartIndex >= 0
-                    && shockwaveRowStartIndex < staircaseMatrix.GetLength(0)
-                    && shockwaveColLeftStartIndex >= 0
-                    && shockwaveColLeftStartIndex < staircaseMatrix.GetLength(1))
+                int a = rowOfImpact - row;
+                int b = colOfImpact - col;
+                double distance = Math.Sqrt(a * a + b * b);
+                if (distance <= radiusOfImpact)
                 {
-                    staircaseMatrix[shockwaveRowStartIndex, shockwaveColLeftStartIndex] = ' ';
-                }
-            }
-            leftWave++;
-            rightWave--;
-        }
-        leftWave = originalLeftWave;
-        rightWave = originalRightWave;
-
-        for (int shockwaveRowStartIndex = rowOfImpact - 1; shockwaveRowStartIndex >= upRowsBlastRange; shockwaveRowStartIndex--)
-        {
-            leftWave++;
-            rightWave--;
-            for (int shockwaveColLeftStartIndex = leftWave;
-                shockwaveColLeftStartIndex <= rightWave;
-                shockwaveColLeftStartIndex++)
-            {
-                if (shockwaveRowStartIndex >= 0
-                    && shockwaveRowStartIndex < staircaseMatrix.GetLength(0)
-                    && shockwaveColLeftStartIndex >= 0
-                    && shockwaveColLeftStartIndex < staircaseMatrix.GetLength(1))
-                {
-                    staircaseMatrix[shockwaveRowStartIndex, shockwaveColLeftStartIndex] = ' ';
+                    staircaseMatrix[row, col] = ' '; 
                 }
             }
         }
         int loopCounter = 0;
-//        for (int row = 0; row < staircaseMatrix.GetLength(0); row++)
-//        {
-//            for (int col = 0; col < staircaseMatrix.GetLength(1); col++)
-//            {
-//                Console.Write(staircaseMatrix[row, col]);
-//            }
-//            Console.WriteLine();
-//
-//        }
-//        Console.WriteLine();
-
-        for (int rowIndex = staircaseMatrix.GetLength(0) - 1; rowIndex >= 0; rowIndex--)
+        for (int col = 0; col < staircaseMatrix.GetLength(1); col++)
         {
-            for (int colIndex = 0; colIndex < staircaseMatrix.GetLength(1); colIndex++)
+            for (int row = staircaseMatrix.GetLength(0) - 1; row >= 0; row--)
             {
-                while (staircaseMatrix[rowIndex, colIndex] == ' ' && rowIndex > 0)
+                if (staircaseMatrix[row, col] == ' ')
                 {
-                   
-                    for (int fallIndex = rowIndex; fallIndex > 0; fallIndex--)
-                    {
-                        staircaseMatrix[fallIndex, colIndex] = staircaseMatrix[fallIndex - 1, colIndex];
-
-                    }
-
-                    staircaseMatrix[0, colIndex] = ' ';
-
-                    if (loopCounter++ > rowIndex + 1)
-                    {
-                        loopCounter = 0;
-                        break;
-                    }
+                    loopCounter++;
+                }
+                else if (loopCounter > 0)
+                {
+                    staircaseMatrix[row + loopCounter, col] = staircaseMatrix[row, col];
+                    staircaseMatrix[row, col] = ' ';
                 }
             }
+            loopCounter = 0;
         }
         for (int row = 0; row < staircaseMatrix.GetLength(0); row++)
         {
@@ -142,7 +95,16 @@ class TargetPractice
                 Console.Write(staircaseMatrix[row, col]);
             }
             Console.WriteLine();
-
         }
+        //        for (int row = 0; row < staircaseMatrix.GetLength(0); row++)
+        //        {
+        //            for (int col = 0; col < staircaseMatrix.GetLength(1); col++)
+        //            {
+        //                Console.Write(staircaseMatrix[row, col] + " ");
+        //            }
+        //            Console.WriteLine();
+        //
+        //        }
+        //        Console.WriteLine();
     }
 }
